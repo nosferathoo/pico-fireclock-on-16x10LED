@@ -1,6 +1,6 @@
 # pico-fireclock-on-16x10LED
 
-![ezgif com-optimize](https://github.com/nosferathoo/pico-fireclock-on-16x10LED/assets/2834098/f90afb6f-abbf-42b1-8463-ec4b79b0dca0)
+![ezgif com-video-to-gif](https://github.com/nosferathoo/pico-fireclock-on-16x10LED/assets/2834098/1d64f51b-5a88-434d-b74f-35be0019b92d)
 
 Simple clock with procedural fire effect displayed on 16x10 RGB LED Grid using Micropython on Raspberry Pi Pico.
 
