@@ -36,7 +36,7 @@ if __name__=='__main__':
     
     lastLine = fireTempAr[:16]
 
-    fireLookUpPalette = array.array("I", (rgb_to_int(i,0,0) if i<256 else rgb_to_int(255,(i-256),0) if i<512 else rgb_to_int(255,255,(i-512)) if i<768 else rgb_to_int(255,255,255) for i in range(256*4)))
+    fireLookUpPalette = array.array("I", (rgb_to_int(0,i,0) if i<256 else rgb_to_int((i-256),255,0) if i<512 else rgb_to_int(255,255,(i-512)) if i<768 else rgb_to_int(255,255,255) for i in range(1024)))
     fireLookUpPalette2 = array.array("I", (rgb_to_int2(mul_rgb(0.2,int_to_rgb(c))) for c in fireLookUpPalette))
     paletteSize = len(fireLookUpPalette)
 
@@ -80,7 +80,7 @@ if __name__=='__main__':
                         if settime_digit > 3:
                             hours = settime_time[0]*10+settime_time[1] - hours
                             minutes = settime_time[2]*10+settime_time[3] - minutes
-                            offset_time = hours * 3600 + minutes * 60
+                            offset_time = hours * 3600 + minutes * 60 - seconds
                             mode = MODE_NORMAL
                         break
 
@@ -115,13 +115,13 @@ if __name__=='__main__':
                 
         
         for i in range(16):
-            lastLine[i] = random.randrange(0,paletteSize)
+            lastLine[i] = random.randrange(0,len(fireLookUpPalette))
         # scroll up add random fire at btooom
         fireTempAr = fireTempAr[16:] + lastLine
         
         fireTempAr2 = fireTempAr
         for i in range(16,NUM_LEDS):
-            fireTempAr2[i] = (fireTempAr[i-16] + fireTempAr[i-1] + fireTempAr[i+1] + fireTempAr[i+16] + fireTempAr[i]) // 7
+            fireTempAr2[i] = (int)((fireTempAr[i-16] + fireTempAr[i-1] + fireTempAr[i+1] + fireTempAr[i+16] + fireTempAr[i]) / 5.25)
         fireTempAr = fireTempAr2
         
         for i in range(NUM_LEDS):
